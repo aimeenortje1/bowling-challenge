@@ -1,18 +1,60 @@
 export const emptyFrames = [
   {
-    index: 0,
+    index: "test 0",
     rolls: [null, null],
     bonus: null,
     score: null,
   },
   {
-    index: 1,
+    index: "test 1",
     rolls: [null, null],
     bonus: null,
     score: null,
   },
   {
-    index: 2,
+    index: "test 2",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 3",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 4",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 5",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 6",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 7",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 8",
+    rolls: [null, null],
+    bonus: null,
+    score: null,
+  },
+  {
+    index: "test 9",
     rolls: [null, null],
     bonus: null,
     score: null,

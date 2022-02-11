@@ -1,18 +1,19 @@
 import React from "react";
 import Frame from "components/Frame";
+import './FramesList.scss';
 
 const FramesList = ({frames}) => {
 
     const renderedFrames = frames.map((frame) => {
         return (
             <div key={frame?.index}>
-                <Frame/>
+                <Frame frame={frame}/>
             </div>
         )
     })
   return (
     <div>
-      <ul>{renderedFrames}</ul>
+      <ul className="frames-list">{renderedFrames}</ul>
     </div>
   );
 };
