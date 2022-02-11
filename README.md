@@ -7,6 +7,7 @@ The game rules:
   - In general a player scores the number of pins knocked down.
   - If the player knocks down all 10 pins on the first roll it’s a strike. The player scores 10 plus the number of pins knocked down in the next two rolls.
   - If the player knocks down all 10 pins in two rolls it’s a spare. The player scores 10 plus the number of pins knocked down in the next roll.
+  - Added 2 buttons to force a strike and a spare, mainly for demonstrationn purposes
 
 ### Outstanding features / bugs
 As I wanted to limit myself to more or less 8 hours, I updating here what is outstanding that I would like to have completed
