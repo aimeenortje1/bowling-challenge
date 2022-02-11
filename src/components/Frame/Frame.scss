@@ -1,0 +1,45 @@
+.frame {
+  border: 1px solid beige;
+  border-right-color:transparent;
+  border-left-color:black;
+  width: 10rem;
+  background-color: beige;
+  font-size: 2rem;
+  text-align: center;
+  vertical-align: center;
+
+  &:not(:first-child) {
+    border-left: 0px ; //not working
+  }
+
+  &__index {
+    padding: 0.5rem;
+    height: 3rem;
+  }
+
+  &__roll-scores {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    height: 4rem;
+
+    &--first {
+      padding: 0.5rem;
+      border-right: 1px solid black;
+      width: 50%;
+      
+    }
+
+    &--second {
+      padding: 0.5rem;
+      width: 50%;
+    }
+  }
+
+  &__score {
+    padding: 0.5rem;
+    height: 4.5rem;
+  }
+}

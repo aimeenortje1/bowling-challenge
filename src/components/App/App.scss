@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+}
+
+.app {
+
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(black, 0.8),
+        rgba(grey, 0.8)),
+    url(../../assets/images/bowling-alley.jpg);
+    background-position: center;
+
+}
