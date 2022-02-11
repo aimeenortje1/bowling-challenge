@@ -1,10 +1,11 @@
 import React from 'react'
 import Game from "components/Game"
+import "./App.scss";
 
 
 const App = () => {
     return (
-        <div>
+        <div className="app">
             <Game/>
         </div>
     )
