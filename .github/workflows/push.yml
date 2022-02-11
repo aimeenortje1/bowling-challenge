@@ -1,0 +1,16 @@
+name: Push Workflow
+
+on: push
+
+jobs: 
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+          uses: actions/setup-node@v2.1.4
+          with:
+            node-version: 14
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
