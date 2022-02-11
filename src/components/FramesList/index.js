@@ -6,7 +6,7 @@ const FramesList = ({frames}) => {
 
     const renderedFrames = frames.map((frame) => {
         return (
-            <div key={frame?.index}>
+            <div data-testid="frame" key={frame?.index}>
                 <Frame frame={frame}/>
             </div>
         )
