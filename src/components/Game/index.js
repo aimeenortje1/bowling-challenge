@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import FramesList from 'components/FramesList';
+import { emptyFrames } from 'utils/emptyFrames';
 
 const Game = () => {
 
-    const [frames, setFrames] = useState([]);
+    const [frames, setFrames] = useState(emptyFrames);
 
 
 
@@ -11,7 +12,7 @@ const Game = () => {
 
     return (
         <div>
-            <FramesList/>
+            <FramesList frames={frames}/>
 
         </div>
     )
