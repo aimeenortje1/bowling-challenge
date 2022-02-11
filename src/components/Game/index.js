@@ -16,15 +16,20 @@ const Game = () => {
   const [frames, setFrames] = useState(emptyFrames);
   const [frameIndex, setFrameIndex] = useState(0);
   const [gameScore, setGameScore] = useState(0);
+  const [isGameOver, setGameOver] = useState(false);
 
   const incrementFrameIndex = () => setFrameIndex(frameIndex + 1);
+  const isSpare = (previousRoll, pins) =>
+    previousRoll + pins === 10 ? true : false;
 
+  // TODO: move some of the useEffects to custom hooks
   //   updateGameScore
   useEffect(() => {
-    
     if (!frames[frameIndex - 1]?.rolls) return;
     const prevFrameScore = calculateFrameScore(frames[frameIndex - 1]?.rolls);
-    if (frames[frameIndex-1].bonus === null &&  prevFrameScore) {
+
+    //TODO: only update the frame score after the bonus score has been determined
+    if (prevFrameScore) {
       setGameScore(gameScore + prevFrameScore);
       setFrames((state) => updateFrameScore(state, frameIndex));
     }
@@ -37,7 +42,7 @@ const Game = () => {
       setFrames((state) => {
         return updateStrikeScore(state, frameIndex);
       });
-    } 
+    }
   }, [frameIndex]);
 
   //   handle previous spare
@@ -61,6 +66,17 @@ const Game = () => {
       });
     }
   }, [frames[frameIndex]]);
+
+  //   handle END OF GAME
+  useEffect(() => {
+    if (frameIndex > 9) {
+      console.log("GAME OVER!");
+      if (frames[frameIndex - 1]?.bonus === SPARE) {
+      }
+
+      setGameOver(true);
+    }
+  }, [frameIndex]);
 
   const rollFirst = (forcedPins) => {
     const pins = getRandomPins(0, forcedPins);
@@ -88,7 +104,6 @@ const Game = () => {
   const rollSecond = (forcedPins) => {
     const previousRoll = frames[frameIndex]?.rolls[0];
     const pins = getRandomPins(previousRoll, forcedPins);
-    const isSpare = previousRoll + pins === 10 ? true : false;
 
     setFrames((state) => {
       const newState = [
@@ -96,7 +111,7 @@ const Game = () => {
         {
           ...state[frameIndex],
           rolls: [state[frameIndex].rolls[0], pins],
-          bonus: isSpare ? SPARE : null,
+          bonus: isSpare(previousRoll, pins) ? SPARE : null,
         },
         ...state.slice(frameIndex + 1),
       ];
@@ -110,36 +125,42 @@ const Game = () => {
 
   return (
     <div className="game">
-      <div>Game Score: {gameScore}</div>
       <FramesList frames={frames} />
-      <div className="game__buttons--first">
-        <button
-          disabled={frames[frameIndex]?.rolls[0] !== null}
-          onClick={() => rollFirst()}
-        >
-          Roll 1
-        </button>
-        <button
-          disabled={frames[frameIndex]?.rolls[0] !== null}
-          onClick={() => rollFirst(10)}
-        >
-          Force Strike
-        </button>
+      <div className="game__buttons">
+        <div className="game__buttons--first">
+          <button
+            className="button"
+            disabled={frames[frameIndex]?.rolls[0] !== null}
+            onClick={() => rollFirst()}
+          >
+            Roll 1
+          </button>
+          <button
+            className="button"
+            disabled={frames[frameIndex]?.rolls[0] !== null}
+            onClick={() => rollFirst(10)}
+          >
+            Force Strike
+          </button>
+        </div>
+        <div className="game__buttons--first">
+          <button
+            className="button"
+            disabled={frames[frameIndex]?.rolls[0] === null || isGameOver}
+            onClick={() => rollSecond()}
+          >
+            Roll 2
+          </button>
+          <button
+            className="button"
+            disabled={frames[frameIndex]?.rolls[0] === null || isGameOver}
+            onClick={() => rollSecond(10 - frames[frameIndex]?.rolls[0])}
+          >
+            Force Spare
+          </button>
+        </div>
       </div>
-      <div className="game__buttons--first">
-        <button
-          disabled={frames[frameIndex]?.rolls[0] === null}
-          onClick={() => rollSecond()}
-        >
-          Roll 2
-        </button>
-        <button
-          disabled={frames[frameIndex]?.rolls[0] === null}
-          onClick={() => rollSecond(10 - frames[frameIndex]?.rolls[0])}
-        >
-          Force Spare
-        </button>
-      </div>
+      <div className="game__score">Game Score: {gameScore}</div>
     </div>
   );
 };
